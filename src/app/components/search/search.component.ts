@@ -6,7 +6,7 @@ import {SpotifyService } from '../../services/spotify.service';
 })
 export class SearchComponent implements OnInit {
 
-
+ artistas:any[] = [];
  termino:string = "";
   constructor(private spotifyService: SpotifyService) { }
 
@@ -15,8 +15,8 @@ export class SearchComponent implements OnInit {
   }
 
   buscarArtista(){
-    // console.log(this.spotifyService.getArtistas(this.termino));
-  
+
     this.spotifyService.getArtistas(this.termino);
+
   }
 }
