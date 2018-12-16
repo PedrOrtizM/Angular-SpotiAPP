@@ -1,0 +1,67 @@
+
+<div *ngIf="artista" class="main-container animated fadeIn fast">
+<div class="row">
+
+  <div class="col-md-3 text-center ">
+
+    <img [src]="artista.images | sinfoto" class="rounded-circle img-thumbnail margin-izq">
+
+  </div>
+  <div class="col-md-9 container">
+
+
+    <h1 class="text-center">{{ artista.name }} </h1>
+    <h5 class="text-center">Followers: {{ artista.followers.total }}    |  Género:  {{ artista.genres[0] }}
+    | Popularidad:  {{ artista.popularity }} </h5>
+    <hr>
+    <div class="text-center">
+
+    <button [routerLink] ="['/search']"  type="button"class="btn btn-outline-danger"> Regresar </button>
+    <a  [href]="artista.external_urls?.spotify" target="_blank" class="btn btn-outline-success" role="button">Abrir en Spotify</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div *ngIf="pistas"class="container">
+<h1 style="margin-top: 30px">TOP Tracks - {{ artista.name }}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+
+
+<div class="table-responsive">
+
+<table class="table table-inverse table-hover">
+  <thead>
+
+  <tr>
+     <th> # </th>
+      <th> Imagen </th>
+      <th> Canción </th>
+      <th> Popularidad </th>
+      <th> Preview </th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let item of pistas; let i = index">
+
+  <th> {{ i+1 }}</th>
+  <th> <img [src]="item.album?.images | sinfoto" class="img-50 img-fluid"> </th>
+  <th> {{  item.name   }}</th>
+  <th> {{  item.popularity }} %</th>
+  <th>
+    <audio controls>
+    <source [src]="item.preview_url">Tu navegador es viejo!
+  </audio>
+  </th>
+  </tr>
+</tbody>
+
+</table>
+</div>
+</div>
+</div>
+</div>
