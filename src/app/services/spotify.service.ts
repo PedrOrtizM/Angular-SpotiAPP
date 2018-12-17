@@ -42,10 +42,10 @@ export class SpotifyService {
 
 
 
-    return this.http.get(url, {headers}).subscribe(
+     this.http.get(url, {headers}).subscribe(
       data => {
-               console.log("PUT Request is successful ", data);
-               return data;
+               console.log("PUT Request is successful ", JSON.stringify(data));
+               return JSON.stringify(data);
            },
            error => {
                console.log("Error", error);
