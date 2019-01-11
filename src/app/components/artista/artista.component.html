@@ -11,7 +11,7 @@
 
 
     <h1 class="text-center">{{ artista.name }} </h1>
-    <h5 class="text-center">Followers: {{ artista.followers.total }}    |  Género:  {{ artista.genres[0] }}
+    <h5 class="text-center">Followers: {{ artista.followers.total | number }}    |  Género:  {{ artista.genres[0] }}
     | Popularidad:  {{ artista.popularity }} </h5>
     <hr>
     <div class="text-center">
