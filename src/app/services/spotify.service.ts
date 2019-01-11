@@ -1,76 +1,50 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-
-import { Observable } from 'rxjs';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators'
+// Cuando se define un injectable de esta manera se necesario importarlo en app.module
 @Injectable()
+
 export class SpotifyService {
 
-  artistas:any[] = [];
-  urlBusqueda:string = "https://api.spotify.com/v1/search";
-  urlArtista:string = "https://api.spotify.com/v1/artists";
-  token:string = "Bearer BQCl_5CAN9aLEoLJT1UZ60xmsXZeEWGTyAXdk-9OMQupSuVzUEenUoJ1TrIDuklGOk5CPVvZ42ZsSButb2c";
 
-  constructor( private http:Http) {
 
+  token:string = "Bearer BQD4phKJHxHF_JRK8mho7CRyzfontVjmxZsinGxt6zNAiSuwLG6_SLnhmuGR_IK_pMf7G6VROAKmqvEcrP8";
+
+  constructor( private http:HttpClient) {
+
+   }
+
+   getQuery(query:string){
+
+     const url = `https://api.spotify.com/v1/${query}`;
+     const headers = new HttpHeaders().set("authorization", this.token);
+
+     return this.http.get(url , {headers});
    }
 
   getArtistas( termino:string){
 
-    let headers  = new Headers();
-    headers.append('authorization',this.token);
-
-    let query = `?q=${termino}&type=artist`;
-    let url = this.urlBusqueda + query
-
-     return this.http.get(url, {headers}).subscribe(
-       res =>{
-         this.artistas = res.json().artists.items;
-         //  console.log(this.artistas);
-         console.log(res.json().artists.items);
-         //return res.json().artists.items;
-       }
-     );
-
-  }
-
-  getTop( id:string){
-
-    let headers  = new Headers();
-    headers.append('authorization',this.token);
-
-    let query = `/${id}/top-tracks?country=US`;
-    let url = this.urlArtista + query
-
-
-
-    return this.http.get(url, {headers}).subscribe(
-      res =>{
-        this.artistas = res.json();
-        console.log(res.json());
-      }
-
-    );
+    return this.getQuery(`search?q=${termino}&type=artist`).pipe( map( data =>{
+      return data['artists'].items;
+    }));
 
   }
 
   getArtista( id:string){
 
-    let headers  = new Headers();
-    headers.append('authorization',this.token);
+  // const headers2 = new HttpHeaders({
+  //   'authorization': this.token
+  // });
 
-    let query = `/${id}`;
-    let url = this.urlArtista + query
+  return  this.getQuery( `artists/${id}`);
 
-     return this.http.get(url, {headers}).subscribe(
-      res => {
-           console.log(res.json());
-           return res.json();
 
-      }
-    )
 
 
   }
 
+  getTop( id:string){
+    return this.getQuery(`artists/${id}/top-tracks?country=US`);
+
+  }
 }
