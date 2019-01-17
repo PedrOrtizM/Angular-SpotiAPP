@@ -3,65 +3,57 @@
 <div class="row">
 
   <div class="col-md-3 text-center ">
-
-    <img [src]="artista.images | sinfoto" class="rounded-circle img-thumbnail margin-izq">
-
+    <img [src]="artista.images | sinfoto" class="rounded-circle img-200 img-thumbnail margin-izq">
   </div>
-  <div class="col-md-9 container">
 
-
-    <h1 class="text-center">{{ artista.name }} </h1>
-    <h5 class="text-center">Followers: {{ artista.followers.total | number }}    |  Género:  {{ artista.genres[0] }}
-    | Popularidad:  {{ artista.popularity }} </h5>
+  <div class="col-md-7">
+    <h1 class="text-center">{{ artista.name }}</h1>
+    <h5 class="text-center">
+        Followers:   <small> {{ artista.followers.total | number }}     </small>
+     |  Género:      <small> {{ artista.genres[0] | uppercase}}         </small>
+     |  Popularidad: <small> {{ artista.popularity }} %</small>
+    </h5>
     <hr>
     <div class="text-center">
 
-    <button [routerLink] ="['/search']"  type="button"class="btn btn-outline-danger"> Regresar </button>
+    <button [routerLink] ="['/search']"  type="button"class="btn btn-outline-danger mx-2"> Regresar </button>
     <a  [href]="artista.external_urls?.spotify" target="_blank" class="btn btn-outline-success" role="button">Abrir en Spotify</a>
     </div>
-  </div>
+
 </div>
 </div>
 
-<div *ngIf="pistas"class="container">
-<h1 style="margin-top: 30px">TOP Tracks - {{ artista.name }}</h1>
+<div style="margin-left: 24%">
 
-<div class="row">
-  <div class="col-md-12">
+<div *ngIf="pistas"class="col-md-10">
+  <h1 style="margin-top: 30px">TOP Tracks</h1>
 
 
-<div class="table-responsive">
+      <table class="table table-responsive ">
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col"> #      </th>
+            <th scope="col"> Imagen       </th>
+            <th scope="col"> Canción </th>
+            <th scope="col"> Popularidad </th>
+            <th scope="col"> Preview </th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pistas; let i = index">
 
-<table class="table table-inverse table-hover">
-  <thead>
+            <td class="text-center" scope="row" > {{ i+1 }}</td>
+            <td class="text-center"> <img [src]="item.album?.images | sinfoto" class="img-50 img-fluid"> </td>
+            <td class="text-center"> {{  item.name   }}</td>
+            <td class="text-center"> {{  item.popularity }} %</td>
+            <td class="text-center">
+                <audio controls>
+                <source [src]="item.preview_url | sinPreviw">Tu navegador es viejo!
+                </audio>
+           </td>
+          </tr>
+        </tbody>
 
-  <tr>
-     <th> # </th>
-      <th> Imagen </th>
-      <th> Canción </th>
-      <th> Popularidad </th>
-      <th> Preview </th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-  <tr *ngFor="let item of pistas; let i = index">
-
-  <th> {{ i+1 }}</th>
-  <th> <img [src]="item.album?.images | sinfoto" class="img-50 img-fluid"> </th>
-  <th> {{  item.name   }}</th>
-  <th> {{  item.popularity }} %</th>
-  <th>
-    <audio controls>
-    <source [src]="item.preview_url">Tu navegador es viejo!
-  </audio>
-  </th>
-  </tr>
-</tbody>
-
-</table>
-</div>
-</div>
+      </table>
 </div>
 </div>

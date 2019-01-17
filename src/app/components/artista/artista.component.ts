@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {ActivatedRoute} from'@angular/router';
 import {SpotifyService} from '../../services/spotify.service';
 
@@ -18,14 +18,14 @@ export class ArtistaComponent {
     parametros => {
       this.getArtista( parametros.id );
       this.getTop(parametros.id);
-
     });
    }
 
 
 getArtista(id:string){
   this._spotifyService.getArtista(id) .subscribe( data =>{
-       this.artista = data
+     this.artista = data
+    // console.log(data)
      });
 
 }

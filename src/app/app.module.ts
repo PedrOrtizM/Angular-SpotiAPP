@@ -14,6 +14,7 @@ import  {SpotifyService} from'./services/spotify.service';
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
 import { ArtistaComponent } from './components/artista/artista.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { SinPreviwPipe } from './pipes/sin-previw.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     NavbarComponent,
     SinfotoPipe,
     ArtistaComponent,
-    LoadingComponent
+    LoadingComponent,
+    SinPreviwPipe
 
   ],
   imports: [

@@ -8,7 +8,7 @@ export class SpotifyService {
 
 
 
-  token:string = "Bearer BQAVZQXfhNu90Vkkdpq48cN2YSKIOovKMvQbMFxmu40e4YrLfN2lkpttyVfecDgkUpYk6dzyRVmnlIvGobA";
+  token:string = "Bearer BQDdcmGBb-Q8UOW6PuFHOGsv8ik20j_TAfUk9Ggl4FVHh1gVW2DnwcoPw0T9OC7K_VxD46oXOPSiivz2myo";
 
   constructor( private http:HttpClient) {
 
@@ -23,7 +23,8 @@ export class SpotifyService {
    }
 
   getArtistas( termino:string){
-
+   // pipe y map para fultrr la filtrar la información que viene
+   // para que no salga error se pone entre [''] el atributo que viene de data
     return this.getQuery(`search?q=${termino}&type=artist`).pipe( map( data =>{
       return data['artists'].items;
     }));
@@ -40,11 +41,12 @@ export class SpotifyService {
 
 
 
-
   }
 
   getTop( id:string){
-    return this.getQuery(`artists/${id}/top-tracks?country=US`);
+    return this.getQuery(`artists/${id}/top-tracks?country=US`).pipe( map( data =>{
+      return data['tracks'];
+    }));
 
   }
 }
