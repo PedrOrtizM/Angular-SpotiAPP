@@ -8,7 +8,7 @@ export class SpotifyService {
 
 
 
-  token:string = "Bearer BQDdcmGBb-Q8UOW6PuFHOGsv8ik20j_TAfUk9Ggl4FVHh1gVW2DnwcoPw0T9OC7K_VxD46oXOPSiivz2myo";
+  token:string = "Bearer BQBHL6H-QUoUNyb3aqrkJXlhVLq0xsiMejGJbC3qofcYzN5VJeJECvYAJMUE9UQMgEfh4xccKMNn43djG3g";
 
   constructor( private http:HttpClient) {
 

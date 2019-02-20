@@ -1,0 +1,105 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SpotiApp",
+		"_postman_id": "a93aee2f-6226-e86f-84bd-a6b6bd2f008e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"url": "https://accounts.spotify.com/api/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "6efec6ec19c94e9f870797874f0d8404",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "7313198bb4b54fca9f876df441c1f19d",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"url": {
+					"raw": "https://api.spotify.com/v1/search?q=juanes&type=artist",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "juanes",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "type",
+							"value": "artist",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer BQCY49f0hiBIFSuqH9RmbxYaeW9kIOMVptQG1W0fAnSjge9AiQlnuT1JoY_WTlCl9s3P5LC7_7aiCMU1q4w",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
